@@ -41,3 +41,17 @@ def blogpost(request):
     else:
         form = BlogPost()
         return render(request,'new.html',{'form':form})
+
+
+def update(request, pk):
+
+    #어떤 블로그를 수정할지 블로그 객체를 갖고오기
+    blog = get_object_or_404(Blog, pk = pk)
+
+    #해당하는 블로그 객체 pk에 맞는 입력공간
+    form = BlogPost(request.POST, instance=blog)
+
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+    return render(request, 'blog/new.html', {'form':form})

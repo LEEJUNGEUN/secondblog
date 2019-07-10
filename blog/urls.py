@@ -8,4 +8,6 @@ urlpatterns = [
     path('new/', views.new, name='new'),
     path('create/', views.create, name='create'),
     path('newblog/', views.blogpost, name='newblog'),
+    path('update/<int:pk>', views.update, name="update"), #여러개의 글 중 특정 글을 선택해서 수행 
+
 ]
